@@ -60,7 +60,7 @@
 
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/signInToregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"

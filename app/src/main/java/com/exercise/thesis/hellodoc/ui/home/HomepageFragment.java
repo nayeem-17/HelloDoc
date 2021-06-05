@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.exercise.thesis.hellodoc.R;
+import com.exercise.thesis.hellodoc.ui.DrawerLocker;
 
 public class HomepageFragment extends Fragment {
 
@@ -30,6 +33,15 @@ public class HomepageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((DrawerLocker) getActivity()).setDrawerEnabled(true);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 }

@@ -12,13 +12,16 @@
         tools:layout="@layout/fragment_splashscreen" >
         <action
             android:id="@+id/action_splashscreenFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+            app:destination="@id/welcomeFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/home_nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.exercise.thesis.hellodoc.ui.auth.WelcomeFragment"
-        android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
+        android:label="Welcome"
+        tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_homepageFragment"
             app:destination="@id/homepageFragment" />
@@ -33,7 +36,8 @@
         tools:layout="@layout/fragment_signup" >
         <action
             android:id="@+id/action_signupFragment_to_doctorProfileFragment"
-            app:destination="@id/doctorProfileFragment" />
+            app:destination="@id/doctorProfileFragment"
+            app:popUpTo="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/signinFragment"
@@ -43,12 +47,20 @@
         <action
             android:id="@+id/action_signinFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_signinFragment_to_doctorProfileFragment"
+            app:destination="@id/doctorProfileFragment"
+            app:popUpTo="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/doctorProfileFragment"
         android:name="com.exercise.thesis.hellodoc.ui.doctor.DoctorProfileFragment"
-        android:label="fragment_doctor_profile"
-        tools:layout="@layout/fragment_doctor_profile" />
+        android:label="Profile"
+        tools:layout="@layout/fragment_doctor_profile">
+        <action
+            android:id="@+id/action_doctorProfileFragment_to_welcomeFragment2"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homepageFragment"
         android:name="com.exercise.thesis.hellodoc.ui.home.HomepageFragment"

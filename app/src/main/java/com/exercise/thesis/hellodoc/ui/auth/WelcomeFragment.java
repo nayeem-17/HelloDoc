@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -34,12 +33,15 @@ public class WelcomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Button noButton = view.findViewById(R.id.no_button);
+        Button yesButton = view.findViewById(R.id.yes_button);
         noButton.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(R.id.action_welcomeFragment_to_homepageFragment);
         });
+        yesButton.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_welcomeFragment_to_signinFragment);
+        });
     }
+
 }
