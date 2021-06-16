@@ -19,6 +19,7 @@ import com.exercise.thesis.hellodoc.R;
 
 public class SplashscreenFragment extends Fragment {
 
+    private static boolean isFirstTime = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,11 @@ public class SplashscreenFragment extends Fragment {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         new Handler(Looper.myLooper()).postDelayed(() -> {
-            Navigation.findNavController(view).navigate(R.id.action_splashscreenFragment_to_welcomeFragment);
+            if (isFirstTime == true) {
+                Navigation.findNavController(view).navigate(R.id.action_splashscreenFragment_to_aboutFragment);
+                isFirstTime = false;
+            } else
+                Navigation.findNavController(view).navigate(R.id.action_splashscreenFragment_to_welcomeFragment);
         }, 1000);
     }
 }

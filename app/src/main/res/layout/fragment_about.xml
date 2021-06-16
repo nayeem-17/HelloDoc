@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutApp.AboutAppController"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".ui.AboutApp.AboutFragment">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/about_app_viewpager"
         android:layout_width="match_parent"
         android:layout_height="670dp"
-        android:layout_marginBottom="31dp">
-
-    </androidx.viewpager.widget.ViewPager>
+        android:layout_marginBottom="31dp" />
 
     <LinearLayout
         android:id="@+id/about_app_dots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="bottom"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="180dp"
-        android:orientation="horizontal"/>
+        android:gravity="bottom"
+        android:orientation="horizontal" />
 
     <Button
         android:id="@+id/about_app_prevBtn"

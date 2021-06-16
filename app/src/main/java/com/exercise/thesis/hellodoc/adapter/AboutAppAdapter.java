@@ -1,4 +1,4 @@
-package com.exercise.thesis.hellodoc.AboutApp;
+package com.exercise.thesis.hellodoc.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -23,21 +23,21 @@ public class AboutAppAdapter extends PagerAdapter {
     }
 
     private int[] images = {
-        R.drawable.consult,
-        R.drawable.doctor,
-        R.drawable.emergency1
+            R.drawable.consult,
+            R.drawable.doctor,
+            R.drawable.emergency1
     };
 
-    private String[] headings={
-        "Health Consultation",
-        "100+ Doctors",
-        "Emergency Call"
+    private String[] headings = {
+            "Health Consultation",
+            "100+ Doctors",
+            "Emergency Call"
     };
 
     private String[] headingDescription = {
-        "Get health Consultation from doctors directly",
-        "More than 100 doctors available for your treatment",
-        "Do emergency call 24/7"
+            "Get health Consultation from doctors directly",
+            "More than 100 doctors available for your treatment",
+            "Do emergency call 24/7"
     };
 
     @Override
@@ -47,13 +47,13 @@ public class AboutAppAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view==(RelativeLayout) object;
+        return view == (RelativeLayout) object;
     }
 
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.slide_layout,container,false);
+        View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
         ImageView img = view.findViewById(R.id.about_app_image);
         TextView heading = view.findViewById(R.id.about_app_image_heading);
         TextView heading_text = view.findViewById(R.id.about_app_image_text);
@@ -66,6 +66,6 @@ public class AboutAppAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((RelativeLayout)object); // When we change the page to another, destroy or remove the view
+        container.removeView((RelativeLayout) object); // When we change the page to another, destroy or remove the view
     }
 }
