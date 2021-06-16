@@ -1,6 +1,8 @@
 package com.exercise.thesis.hellodoc.ui;
 
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,9 +29,11 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         NavController navController = navHostFragment.getNavController();
 
+        //requestWindowFeature(Window.FEATURE_ACTION_BAR);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FL,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         drawerLayout = findViewById(R.id.drawer_layout);
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.doctorProfileFragment,

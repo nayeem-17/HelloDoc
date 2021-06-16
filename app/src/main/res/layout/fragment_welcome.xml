@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.WelcomeFragment">
+    tools:context=".ui.auth.WelcomeFragment"
+    android:id="@+id/doctor_patient_confirmation">
 
 
     <RelativeLayout
