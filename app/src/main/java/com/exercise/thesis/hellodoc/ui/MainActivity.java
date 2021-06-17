@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
 //        NavigationUI.setupWithNavController(bottomNav, navController);
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
-        drawerLayout = findViewById(R.id.drawer_layout);
+        //drawerLayout = findViewById(R.id.drawer_layout);
 //        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
