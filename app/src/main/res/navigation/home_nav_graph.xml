@@ -16,6 +16,9 @@
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/home_nav_graph" />
+        <action
+            android:id="@+id/action_splashscreenFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -66,4 +69,14 @@
         android:name="com.exercise.thesis.hellodoc.ui.home.HomepageFragment"
         android:label="fragment_homepage"
         tools:layout="@layout/fragment_homepage" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.exercise.thesis.hellodoc.ui.AboutApp.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_aboutFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:popUpTo="@id/home_nav_graph" />
+    </fragment>
 </navigation>
