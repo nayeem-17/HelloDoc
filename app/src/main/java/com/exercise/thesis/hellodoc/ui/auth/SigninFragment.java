@@ -32,7 +32,7 @@ public class SigninFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button loginButton = view.findViewById(R.id.login);
-        Button registerButton = view.findViewById(R.id.signInToregister);
+        Button registerButton = view.findViewById(R.id.signInToRegister);
         loginButton.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(R.id.action_signinFragment_to_doctorProfileFragment);
         });
