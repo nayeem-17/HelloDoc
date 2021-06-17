@@ -47,6 +47,6 @@ public class SplashscreenFragment extends Fragment {
                 isFirstTime = false;
             } else
                 Navigation.findNavController(view).navigate(R.id.action_splashscreenFragment_to_welcomeFragment);
-        }, 1000);
+        }, 1500);
     }
 }

@@ -16,6 +16,9 @@ import com.exercise.thesis.hellodoc.R;
 
 public class SignupFragment extends Fragment {
 
+    Button registerButton;
+    Button returnToLogin;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +34,13 @@ public class SignupFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button registerButton = view.findViewById(R.id.register);
+        registerButton = view.findViewById(R.id.register);
+        returnToLogin = view.findViewById(R.id.returnToLogin);
         registerButton.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_doctorProfileFragment);
+        });
+        returnToLogin.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_signinFragment);
         });
     }
 }
