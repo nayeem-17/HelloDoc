@@ -14,7 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.exercise.thesis.hellodoc.R;
 
-public class WelcomeFragment extends Fragment {
+public class ConfirmationFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class WelcomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_welcome, container, false);
+        return inflater.inflate(R.layout.fragment_confirmation, container, false);
     }
 
     @Override

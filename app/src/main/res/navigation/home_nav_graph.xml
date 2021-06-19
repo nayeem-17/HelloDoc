@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_splashscreen" >
         <action
             android:id="@+id/action_splashscreenFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment"
+            app:destination="@id/confirmationFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_out"
@@ -28,10 +28,10 @@
             app:popUpTo="@id/home_nav_graph" />
     </fragment>
     <fragment
-        android:id="@+id/welcomeFragment"
-        android:name="com.exercise.thesis.hellodoc.ui.auth.WelcomeFragment"
+        android:id="@+id/confirmationFragment"
+        android:name="com.exercise.thesis.hellodoc.ui.auth.ConfirmationFragment"
         android:label="Welcome"
-        tools:layout="@layout/fragment_welcome">
+        tools:layout="@layout/fragment_confirmation">
         <action
             android:id="@+id/action_welcomeFragment_to_homepageFragment"
             app:destination="@id/homepageFragment"
@@ -43,7 +43,7 @@
         <action
             android:id="@+id/action_welcomeFragment_to_signinFragment"
             app:destination="@id/signinFragment"
-            app:popUpTo="@id/welcomeFragment"
+            app:popUpTo="@id/confirmationFragment"
             app:enterAnim="@anim/zoomout"
             app:exitAnim="@anim/fade_in"
             app:popEnterAnim="@anim/fade_in"
@@ -65,7 +65,7 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
-            app:popUpTo="@id/welcomeFragment" />
+            app:popUpTo="@id/confirmationFragment" />
     </fragment>
     <fragment
         android:id="@+id/signinFragment"
@@ -92,7 +92,7 @@
         tools:layout="@layout/fragment_doctor_profile">
         <action
             android:id="@+id/action_doctorProfileFragment_to_welcomeFragment2"
-            app:destination="@id/welcomeFragment" />
+            app:destination="@id/confirmationFragment" />
     </fragment>
     <fragment
         android:id="@+id/homepageFragment"
@@ -106,11 +106,12 @@
         tools:layout="@layout/fragment_about" >
         <action
             android:id="@+id/action_aboutFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment"
+            app:destination="@id/confirmationFragment"
             app:popUpTo="@id/home_nav_graph"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_out"
             app:popExitAnim="@anim/fade_in"/>
     </fragment>
+
 </navigation>
