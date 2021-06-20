@@ -37,7 +37,7 @@ public class ConfirmationFragment extends Fragment {
         Button noButton = view.findViewById(R.id.no_button);
         Button yesButton = view.findViewById(R.id.yes_button);
         noButton.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate(R.id.action_welcomeFragment_to_homepageFragment);
+            Navigation.findNavController(view).navigate(R.id.action_confirmationFragment_to_patientAuthFragment);
         });
         yesButton.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(R.id.action_welcomeFragment_to_signinFragment);

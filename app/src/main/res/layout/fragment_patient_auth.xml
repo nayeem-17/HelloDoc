@@ -3,53 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.PatientAuthFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".ui.auth.PatientAuthFragment">
 
     <TextView
         android:id="@+id/patient_auth_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/alegreya_bold_italic"
         android:gravity="center_horizontal"
         android:text="Ask Doctor Patient"
         android:textAlignment="center"
-        android:textSize="35sp"
-        android:layout_marginTop="40dp"
-        android:textColor="@color/teal_700"/>
+        android:textColor="@color/teal_700"
+        android:textSize="35sp" />
 
     <ImageView
         android:id="@+id/patient_auth_image"
         android:layout_width="500dp"
         android:layout_height="250dp"
-        android:src="@drawable/patient_auth"
         android:layout_below="@id/patient_auth_textview"
-        android:layout_marginBottom="25sp"/>
+        android:layout_marginBottom="25sp"
+        android:src="@drawable/patient_auth" />
 
     <TextView
         android:id="@+id/enter_number_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_below="@id/patient_auth_image"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_horizontal"
         android:text="Enter the mobile number"
         android:textAlignment="center"
-        android:textSize="18sp"
         android:textColor="#636363"
-        android:layout_marginBottom="15dp"/>
+        android:textSize="18sp" />
 
     <LinearLayout
         android:id="@+id/patient_number_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/enter_number_text"
         android:layout_marginStart="55dp"
         android:layout_marginEnd="55dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_below="@+id/enter_number_text"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_edittext_grey"
-        android:layout_marginBottom="10dp">
-        
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="60dp"
@@ -57,14 +57,15 @@
             android:text="+88  "
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <View
             android:layout_width="1dp"
             android:layout_height="42dp"
-            android:background="@color/teal_700"
+            android:layout_marginEnd="14dp"
             android:layout_marginRight="14dp"
-            android:layout_marginEnd="14dp" />
+            android:background="@color/teal_700" />
+
         <EditText
             android:id="@+id/patient_mobile_number"
             android:layout_width="wrap_content"
@@ -74,8 +75,8 @@
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
             android:inputType="number"
-            android:textSize="23sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="23sp" />
 
     </LinearLayout>
 
@@ -83,26 +84,26 @@
         android:id="@+id/otp_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/patient_number_layout"
         android:layout_marginStart="25dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="25dp"
-        android:gravity="center"
-        android:layout_below="@id/patient_number_layout"
-        android:text="We will send you an One Time Password on your given mobile number"
-        android:textSize="19sp"
         android:layout_marginBottom="30dp"
-        />
+        android:gravity="center"
+        android:text="We will send you an One Time Password on your given mobile number"
+        android:textSize="19sp" />
 
     <Button
+        android:id="@+id/number"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
         android:layout_below="@id/otp_text"
         android:layout_centerHorizontal="true"
+        android:background="@color/blue"
         android:text="Next"
-        android:textStyle="bold"
-        android:textSize="22sp"
         android:textAllCaps="false"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
