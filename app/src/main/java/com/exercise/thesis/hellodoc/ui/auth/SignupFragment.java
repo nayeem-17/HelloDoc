@@ -90,13 +90,17 @@ public class SignupFragment extends Fragment {
                 }
             }
         };
+
         password.addTextChangedListener(afterTextChangedListener);
 
         registerButton.setOnClickListener(v -> {
-            Toast.makeText(getActivity(), "YEEEETTT WHAATTT!!!", Toast.LENGTH_SHORT).show();
-            authViewModel.register(email.getText().toString(),
+            authViewModel.register(
+                    email.getText().toString(),
+                    fullName.getText().toString(),
+                    username.getText().toString(),
                     password.getText().toString());
         });
+
         returnToLogin.setOnClickListener(v -> {
             Navigation.findNavController(view).popBackStack();
         });

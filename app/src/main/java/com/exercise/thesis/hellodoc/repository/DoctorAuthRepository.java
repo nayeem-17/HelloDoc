@@ -6,10 +6,12 @@ import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.exercise.thesis.hellodoc.model.Doctor;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.concurrent.atomic.AtomicBoolean;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.ContentValues.TAG;
 
@@ -18,12 +20,15 @@ public class DoctorAuthRepository {
     private static DoctorAuthRepository authRepository;
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<FirebaseUser> firebaseUser;
-
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
 
     public DoctorAuthRepository(Application application) {
         this.application = application;
         this.firebaseAuth = FirebaseAuth.getInstance();
         this.firebaseUser = new MutableLiveData<>();
+        this.database = FirebaseDatabase.getInstance();
+        this.reference = database.getReference("doctor");
     }
 
     public FirebaseAuth getFirebaseAuth() {
@@ -37,30 +42,35 @@ public class DoctorAuthRepository {
         return authRepository;
     }
 
-    public boolean signIn(String email, String password) {
-        AtomicBoolean isSuccess = new AtomicBoolean(false);
+    public void signIn(String email, String password) {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                isSuccess.set(true);
                 // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "signInWithEmail:success");
-                Toast.makeText(application, "AAAAAAAAAAAAAAAAAAAA", Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, "Welcome", Toast.LENGTH_SHORT).show();
                 firebaseUser.postValue(firebaseAuth.getCurrentUser());
             } else {
                 // If sign in fails, display a message to the user.
-                Toast.makeText(application, "Fucked Up", Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                isSuccess.set(false);
             }
         });
-        return isSuccess.get();
     }
 
-    public void register(String email, String password) {
+    public void register(String email, String fullName, String userName, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 firebaseUser.postValue(firebaseAuth.getCurrentUser());
-                Toast.makeText(application, "AAAAAAAAAAAAAAAAAAAA", Toast.LENGTH_SHORT).show();
+                Doctor doctor = new Doctor(fullName, userName, email);
+                reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(doctor);
+                Toast.makeText(application, "Sign Up successful!", Toast.LENGTH_SHORT).show();
+
+            } else {
+                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                    Toast.makeText(application, "User already exists!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(application, "Error -> " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
