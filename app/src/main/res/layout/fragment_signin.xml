@@ -29,7 +29,8 @@
         android:selectAllOnFocus="true"
         android:textColor="@color/white"
         android:textColorHint="@color/colorMoreTransparentWhite"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/password"
@@ -49,7 +50,8 @@
         android:selectAllOnFocus="true"
         android:textColor="@color/white"
         android:textColorHint="@color/colorMoreTransparentWhite"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:importantForAutofill="no"/>
 
     <Button
         android:id="@+id/login"

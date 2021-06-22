@@ -1,5 +1,6 @@
 package com.exercise.thesis.hellodoc.ui.auth;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -61,7 +62,7 @@ public class SignupFragment extends Fragment {
 
         authViewModel.getFirebaseUserMutableLiveData().observe(getViewLifecycleOwner(), firebaseUser -> {
             if (firebaseUser != null) {
-                Toast.makeText(getActivity(), "YEEEETTT", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "YEEEETTT", Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_doctorProfileFragment);
             }
         });
@@ -79,14 +80,15 @@ public class SignupFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String error = authViewModel.loginDataChanged(password.getText().toString());
-                if (!username.getText().toString().isEmpty() &&
+                String error = authViewModel.checkPassword(password.getText().toString());
+                if (!fullName.getText().toString().isEmpty() &&
+                        !username.getText().toString().isEmpty() &&
                         !email.getText().toString().isEmpty() &&
                         error.equals("")) {
                     registerButton.setEnabled(true);
                 }
                 if (!error.equals("")) {
-                    password.setError(error);
+                    password.setError("Password must contain at least 8 characters");
                 }
             }
         };
@@ -94,11 +96,20 @@ public class SignupFragment extends Fragment {
         password.addTextChangedListener(afterTextChangedListener);
 
         registerButton.setOnClickListener(v -> {
-            authViewModel.register(
-                    email.getText().toString(),
-                    fullName.getText().toString(),
-                    username.getText().toString(),
-                    password.getText().toString());
+            boolean match = authViewModel.checkPasswordAndConfirmPassword(password.getText().toString(),confirmPassword.getText().toString());
+            if (!match) {
+                Toast.makeText(getContext(), "Sign Up Failed! Please fill all the fields properly.", Toast.LENGTH_SHORT).show();
+                password.setText("");
+                confirmPassword.setText("");
+                registerButton.setEnabled(false);
+            }
+            else{
+                authViewModel.register(
+                        email.getText().toString(),
+                        fullName.getText().toString(),
+                        username.getText().toString(),
+                        password.getText().toString());
+            }
         });
 
         returnToLogin.setOnClickListener(v -> {

@@ -34,16 +34,16 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="50dp"
             android:gravity="center"
-            android:text="Enter the OTP sent to you"
+            android:text="Enter the OTP sent to"
             android:textSize="20sp"
         />
 
         <TextView
             android:id="@+id/textMobile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="50dp"
             android:gravity="center"
             android:textColor="@color/teal_200"
@@ -53,7 +53,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="35dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -186,17 +186,31 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/buttonVerifyOTP"
-            android:layout_width="250dp"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue"
-            android:layout_marginTop="35dp"
-            android:text="Verify"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"/>
+            android:layout_marginTop="65dp">
+
+            <Button
+                android:id="@+id/buttonVerifyOTP"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:layout_gravity="center_horizontal"
+                android:text="Verify"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"/>
+
+            <ProgressBar
+                android:id="@+id/verify_otp_progressBar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 

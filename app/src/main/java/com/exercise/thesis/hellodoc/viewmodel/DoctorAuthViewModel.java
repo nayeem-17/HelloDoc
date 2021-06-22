@@ -39,11 +39,14 @@ public class DoctorAuthViewModel extends AndroidViewModel {
         return firebaseUserMutableLiveData;
     }
 
-    public String loginDataChanged(String password) {
+    public String checkPassword(String password) {
         if (!isPasswordValid(password)) {
             return "invalid_password";
         }
         return "";
+    }
+    public boolean checkPasswordAndConfirmPassword(String password,String confirmPassword) {
+        return password.equals(confirmPassword);
     }
 
     // A placeholder username validation check
@@ -60,6 +63,6 @@ public class DoctorAuthViewModel extends AndroidViewModel {
 
     // A placeholder password validation check
     public boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null && password.trim().length() >= 8;
     }
 }

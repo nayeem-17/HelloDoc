@@ -24,12 +24,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplashscreenFragment extends Fragment {
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences; // Used to store and retrieve small amounts of primitive data as key/value pairs and pull them back as and when needed.
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -48,24 +47,28 @@ public class SplashscreenFragment extends Fragment {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-
         new Handler(Looper.myLooper()).postDelayed(() -> {
+            // The value will be default as empty string because for
+            // the very first time when the app is opened, there is nothing to show
             String isFirstTime = sharedPreferences.getString("first_time", "");
             if (!isFirstTime.equals("NO")) {
+                //If first time, then navigate to about app fragment.
                 Navigation.findNavController(view).navigate(R.id.action_splashscreenFragment_to_aboutFragment);
                 sharedPreferences.edit().putString("first_time", "NO").apply();
             } else {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                // If there exists a user who has signed in before then check if he was signed up using an email
                 if (user != null) {
                     String email = user.getEmail();
-                    Toast.makeText(getContext(), " " + email, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), " " + email, Toast.LENGTH_SHORT).show();
+                    //If the user has no email, then it means that the user is a patient else the user is a doctor
                     if (email == null)
                         Navigation.findNavController(view).navigate(R.id.action_splashscreenFragment_to_homepageFragment);
                     else
                         Navigation.findNavController(view).navigate(R.id.action_splashscreenFragment_to_doctorProfileFragment);
                 } else {
+                    // If there exists no user in the device before, then navigate to welcome fragment to create new user
                     Navigation.findNavController(view).navigate(R.id.action_splashscreenFragment_to_welcomeFragment);
-
                 }
             }
         }, 1500);

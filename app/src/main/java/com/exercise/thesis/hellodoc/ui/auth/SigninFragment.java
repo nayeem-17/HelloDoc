@@ -18,7 +18,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.exercise.thesis.hellodoc.R;
+import com.exercise.thesis.hellodoc.model.Doctor;
 import com.exercise.thesis.hellodoc.viewmodel.DoctorAuthViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SigninFragment extends Fragment {
@@ -45,14 +50,13 @@ public class SigninFragment extends Fragment {
         isLoginComplete.observe(getViewLifecycleOwner(), aBoolean -> {
             if (aBoolean == true)
                 Navigation.findNavController(view).navigate(R.id.action_signinFragment_to_doctorProfileFragment);
-            Toast.makeText(getActivity(), "ISTRUE OBSVR", Toast.LENGTH_SHORT).show();
-
+            //Toast.makeText(getActivity(), "ISTRUE OBSVR", Toast.LENGTH_SHORT).show();
         });
 
         doctorAuthViewModel.getFirebaseUserMutableLiveData().observe(getViewLifecycleOwner(), firebaseUser -> {
             if (firebaseUser != null) {
                 isLoginComplete.postValue(true);
-                Toast.makeText(getActivity(), "VIEWMODEL OBSVR", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "VIEWMODEL OBSVR", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -76,15 +80,16 @@ public class SigninFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String error = doctorAuthViewModel.loginDataChanged(passwordEditText.getText().toString());
+                //String error = doctorAuthViewModel.loginDataChanged(passwordEditText.getText().toString());
                 if (!emailEditText.getText().toString().isEmpty() &&
-                        !passwordEditText.getText().toString().isEmpty() &&
-                        error.equals("")) {
+                        !passwordEditText.getText().toString().isEmpty()
+                        //&& error.equals("")
+                    ) {
                     loginButton.setEnabled(true);
                 }
-                if (!error.equals("")) {
+                /*if (!error.equals("")) {
                     passwordEditText.setError(error);
-                }
+                }*/
             }
         };
         passwordEditText.addTextChangedListener(afterTextChangedListener);

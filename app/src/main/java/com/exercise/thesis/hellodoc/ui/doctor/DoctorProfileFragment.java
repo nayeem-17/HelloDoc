@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,6 +65,7 @@ public class DoctorProfileFragment extends Fragment {
                     text = "Name-> " + doctor.getFullName() + "\nEmail-> " + doctor.getEmail() + "\nUsername-> " + doctor.getUserName();
                 }
                 textView.setText(text);
+                Toast.makeText(getActivity(), "Welcome "+doctor.getUserName(), Toast.LENGTH_SHORT).show();
 //                System.out.println("WHY");
 //                System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
             }
