@@ -12,12 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.exercise.thesis.hellodoc.R;
 import com.exercise.thesis.hellodoc.model.Doctor;
-import com.exercise.thesis.hellodoc.repository.DoctorAuthRepository;
 import com.exercise.thesis.hellodoc.ui.DrawerLocker;
+import com.exercise.thesis.hellodoc.viewmodel.DoctorAuthViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 public class DoctorProfileFragment extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference reference;
+    private DoctorAuthViewModel doctorAuthViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class DoctorProfileFragment extends Fragment {
         this.database = FirebaseDatabase.getInstance();
         this.reference = database.getReference("doctor");
 
+        doctorAuthViewModel = new ViewModelProvider(requireActivity()).get(DoctorAuthViewModel.class);
+
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
@@ -58,14 +62,12 @@ public class DoctorProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Doctor doctor = snapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getValue(Doctor.class);
-                String text = "Yo";
+                String text = "";
                 if (doctor != null) {
                     System.out.println(doctor.toString());
                     text = "Name-> " + doctor.getFullName() + "\nEmail-> " + doctor.getEmail() + "\nUsername-> " + doctor.getUserName();
                 }
                 textView.setText(text);
-//                System.out.println("WHY");
-//                System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
             }
 
             @Override
@@ -75,8 +77,7 @@ public class DoctorProfileFragment extends Fragment {
         });
 
         logOutButton.setOnClickListener(v -> {
-
-            DoctorAuthRepository.getInstance(getActivity().getApplication()).getFirebaseAuth().signOut();
+            doctorAuthViewModel.signOut();
 
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
             ((DrawerLocker) getActivity()).setDrawerEnabled(false);

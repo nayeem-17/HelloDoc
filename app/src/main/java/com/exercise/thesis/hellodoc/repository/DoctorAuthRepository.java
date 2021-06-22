@@ -51,7 +51,7 @@ public class DoctorAuthRepository {
                 firebaseUser.postValue(firebaseAuth.getCurrentUser());
             } else {
                 // If sign in fails, display a message to the user.
-                Toast.makeText(application, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 Log.w(TAG, "signInWithEmail:failure", task.getException());
             }
         });
@@ -69,10 +69,15 @@ public class DoctorAuthRepository {
                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                     Toast.makeText(application, "User already exists!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(application, "Error -> " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    public void signOut() {
+        firebaseAuth.signOut();
+        firebaseUser.setValue(null);
     }
 
     public MutableLiveData<FirebaseUser> getFirebaseUser() {

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +18,7 @@ import androidx.navigation.Navigation;
 
 import com.exercise.thesis.hellodoc.R;
 import com.exercise.thesis.hellodoc.viewmodel.DoctorAuthViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class SigninFragment extends Fragment {
@@ -40,19 +40,19 @@ public class SigninFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        System.out.println("yo   ------...............>>>>" + isLoginComplete.getValue());
         doctorAuthViewModel = new ViewModelProvider(requireActivity()).get(DoctorAuthViewModel.class);
         isLoginComplete.observe(getViewLifecycleOwner(), aBoolean -> {
-            if (aBoolean == true)
+            if (aBoolean == true) {
                 Navigation.findNavController(view).navigate(R.id.action_signinFragment_to_doctorProfileFragment);
-            Toast.makeText(getActivity(), "ISTRUE OBSVR", Toast.LENGTH_SHORT).show();
-
+                isLoginComplete.setValue(false);
+                System.out.println("Value changed");
+            }
         });
 
         doctorAuthViewModel.getFirebaseUserMutableLiveData().observe(getViewLifecycleOwner(), firebaseUser -> {
             if (firebaseUser != null) {
                 isLoginComplete.postValue(true);
-                Toast.makeText(getActivity(), "VIEWMODEL OBSVR", Toast.LENGTH_SHORT).show();
             }
         });
 

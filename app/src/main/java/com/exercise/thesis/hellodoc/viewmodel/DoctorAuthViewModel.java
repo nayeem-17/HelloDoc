@@ -22,17 +22,16 @@ public class DoctorAuthViewModel extends AndroidViewModel {
 
     }
 
-    public DoctorAuthRepository getLoginRepository() {
-        return authRepository;
-    }
-
-
     public void register(String email, String fullName, String userName, String password) {
         authRepository.register(email, fullName, userName, password);
     }
 
     public void signIn(String email, String password) {
         authRepository.signIn(email, password);
+    }
+
+    public void signOut() {
+        authRepository.signOut();
     }
 
     public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
